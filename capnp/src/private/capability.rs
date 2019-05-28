@@ -64,10 +64,11 @@ pub trait ClientHook {
     fn when_more_resolved(&self) -> Option<crate::capability::Promise<Box<dyn ClientHook>, crate::Error>>;
 
     /// Repeatedly calls whenMoreResolved() until it returns nullptr.
-    #[cfg(feature = "rpc")]
     fn when_resolved(&self) -> Promise<(), crate::Error> {
-        use futures::Future;
+//        use std::future::Future;
 
+        unimplemented!()
+            /*
         match self.when_more_resolved() {
             Some(promise) => {
                 Promise::from_future(promise.and_then(|resolution| {
@@ -77,7 +78,7 @@ pub trait ClientHook {
             None => {
                 Promise::ok(())
             }
-        }
+        } */
     }
 }
 
